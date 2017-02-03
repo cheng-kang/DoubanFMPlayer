@@ -3,7 +3,7 @@
 $("<link/>", {
    rel: "stylesheet",
    type: "text/css",
-   href: "https://cdn.rawgit.com/cheng-kang/DoubanFMPlayer/master/src/dbfmplayer.css",
+   href: "https://cdn.rawgit.com/cheng-kang/DoubanFMPlayer/61ea6ae4/src/dbfmplayer.css",
 }).appendTo("head");
 
 // var dbfmplayerSetting = {
