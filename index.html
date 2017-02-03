@@ -8,8 +8,13 @@
 		<div style="width: 700px; margin: 0 auto;">
 			<div id="dbfmplayer"></div>
 		</div>
-		<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+		<!-- <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script> -->
 		<script type="text/javascript">
+			if (!window.jQuery) {
+			    var d = document, s = d.createElement('script');
+			    s.src = 'http://cdn.bootcss.com/jquery/3.1.1/jquery.js';
+			    (d.head || d.body).appendChild(s);
+			}
 			var dbfmplayerSetting = {
 				"title": "茜さす 帰路照らされど…",
 				"singer": "椎名林檎",
