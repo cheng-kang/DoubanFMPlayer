@@ -1,3 +1,10 @@
+// load CSS
+var dbfmplayerCSS=document.createElement("link")
+dbfmplayerCSS.setAttribute("rel", "stylesheet");
+dbfmplayerCSS.setAttribute("type", "text/css");
+dbfmplayerCSS.setAttribute("href", "./dbfmplayer.css");
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dbfmplayerCSS);
+
 var musicVar="";
 musicVar += "<div id=\"dbfmplayer-containner\">";
 musicVar += "				<div id=\"dbfmplayer-left\">";

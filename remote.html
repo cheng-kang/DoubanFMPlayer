@@ -17,19 +17,18 @@
 			};
 
 			(function() { // DON'T EDIT BELOW THIS LINE
+			if (window.jQuery) {
+	          alert("Yeah!");
+	        } else {
+	        	// jQuery is not loaded
+				var d = document, s = d.createElement('script');
+				s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js';
+				(d.head || d.body).appendChild(s);
+	        }
 			var d = document, s = d.createElement('script');
 			s.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.rawgit.com/cheng-kang/DoubanFMPlayer/master/src/dbfmplayer.js';
 			(d.head || d.body).appendChild(s);
 			})();
-			// $.getScript(('https:' == document.location.protocol ? 'https://' : 'http://') + "raw.githubusercontent.com/cheng-kang/DoubanFMPlayer/master/src/dbfmplayer.js");
-			// (function(){;
-			//     var dbfmplayer = document.createElement('script'); 
-			//     dbfmplayer.type = 'text/javascript'; 
-			//     dbfmplayer.async = true; 
-			//     dbfmplayer.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'raw.githubusercontent.com/cheng-kang/DoubanFMPlayer/master/src/dbfmplayer.js'; 
-			//     var s = document.getElementsByTagName('script')[0]; 
-			//     s.parentNode.insertBefore(dbfmplayer, s); 
-			// })();
 		</script>
 	</body>
 </html>

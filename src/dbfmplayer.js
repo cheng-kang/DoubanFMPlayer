@@ -1,4 +1,4 @@
-(function () {
+(function ($) {
 // load CSS
 $("<link/>", {
    rel: "stylesheet",
@@ -142,4 +142,4 @@ $('#dbfmplayer-progress-bar').click(function(e) {
 	}
 });
 
-})();
+})(jQuery);
