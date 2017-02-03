@@ -17,16 +17,8 @@
 			};
 
 			(function() { // DON'T EDIT BELOW THIS LINE
-			if (window.jQuery) {
-	          alert("Yeah!");
-	        } else {
-	        	// jQuery is not loaded
-				var d = document, s = d.createElement('script');
-				s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js';
-				(d.head || d.body).appendChild(s);
-	        }
 			var d = document, s = d.createElement('script');
-			s.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.rawgit.com/cheng-kang/DoubanFMPlayer/master/src/dbfmplayer.js';
+			s.src = './src/dbfmplayer.js';
 			(d.head || d.body).appendChild(s);
 			})();
 		</script>
