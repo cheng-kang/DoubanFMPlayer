@@ -1,22 +1,17 @@
+(function () {
 // load CSS
-var dbfmplayerCSS=document.createElement("link")
-dbfmplayerCSS.setAttribute("rel", "stylesheet");
-dbfmplayerCSS.setAttribute("type", "text/css");
-dbfmplayerCSS.setAttribute("href", "");
-(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dbfmplayerCSS);
-
 $("<link/>", {
    rel: "stylesheet",
    type: "text/css",
-   href: "/styles/yourcss.css"
+   href: "https://raw.githubusercontent.com/cheng-kang/DoubanFMPlayer/master/src/dbfmplayer.css"
 }).appendTo("head");
 
-var dbfmplayerSetting = {
-	"title": "茜さす 帰路照らされど…",
-	"singer": "椎名林檎",
-	"album_pic_url": "https://img1.doubanio.com/lpic/s2722629.jpg",
-	"music_url": "http://mr3.doubanio.com/ff7730a714d4e3ecbf3f5854f6154532/0/fm/song/p1033017_128k.mp4"
-};
+// var dbfmplayerSetting = {
+// 	"title": "茜さす 帰路照らされど…",
+// 	"singer": "椎名林檎",
+// 	"album_pic_url": "https://img1.doubanio.com/lpic/s2722629.jpg",
+// 	"music_url": "http://mr3.doubanio.com/ff7730a714d4e3ecbf3f5854f6154532/0/fm/song/p1033017_128k.mp4"
+// };
 
 var musicVar="";
 musicVar += "<div id=\"dbfmplayer-containner\">";
@@ -65,10 +60,9 @@ musicVar += "			<\/div>";
 musicVar += '			<audio id=\"dbfmplayer-music\" src=\"'+dbfmplayerSetting.music_url+'" style=\"display: none;\"><\/audio>';
 musicVar += "		<\/div>";
 
-var dbfmplayer = document.getElementById("dbfmplayer");
-dbfmplayer.outerHTML = musicVar;
+$("#dbfmplayer")[0].outerHTML = musicVar;
 
-var music = document.getElementById("dbfmplayer-music");
+var music = $("#dbfmplayer-music")[0];
 music.loop = true;
 music.volume = 0.5;
 
@@ -115,11 +109,8 @@ $("#dbfmplayer-loop").click(function(e) {
 	}
 });
 $("#dbfmplayer-download").click(function(e) {
-	var a = document.createElement('a');
-	a.download = music.src.replace(/^.*[\\\/]/, ''); // Set the file name.
-	a.href = music.src;
-	a.style.display = 'none';
-	document.body.appendChild(a);
+	var a = $('<a href="'+music.src+'" download="'+music.src.replace(/^.*[\\\/]/, '')+'" style="display: none;">');
+	a.appendTo("body");
 	a.click();
 	delete a;
 })
@@ -151,3 +142,4 @@ $('#dbfmplayer-progress-bar').click(function(e) {
 	}
 });
 
+})();
