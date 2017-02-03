@@ -1,5 +1,5 @@
 // load CSS
-document.getElementsByTagName("head")[0].innerHTML += '<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/cheng-kang/DoubanFMPlayer/61ea6ae4/src/dbfmplayer.css">'
+document.getElementsByTagName("head")[0].innerHTML += '<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/cheng-kang/DoubanFMPlayer/035c8ddc/src/dbfmplayer.css">'
 
 var musicVar="";
 musicVar += "<div id=\"dbfmplayer-containner\">";
