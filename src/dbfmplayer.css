@@ -11,11 +11,16 @@
 #dbfmplayer-left {
 	flex-direction: column;
 	flex: 1;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 #dbfmplayer-right {
 	margin-left: 30px;
 	width: 203px;
 	height: 203px;
+
+	white-space: nowrap;
 }
 #dbfmplayer-right img {
 	width: 203px;
@@ -24,6 +29,8 @@
 }
 #dbfmplayer-title {
 	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	font-size: 25px;
 	font-weight: 400;
 	line-height: 1.28;
@@ -128,3 +135,65 @@
   -webkit-animation-play-state: paused;
 }
 
+@media only screen 
+  and (max-device-width: 736px)  { 
+	#dbfmplayer-title {
+	    font-size: 14px;
+	    height: 30px;
+	}
+	#dbfmplayer-singer {
+	    font-size: 10px;
+	    height: 10px;
+	}
+	#dbfmplayer-bar {
+		height: 40px;
+	}
+	#dbfmplayer-time {
+	    font-size: 8px;
+	    line-height: 8px;
+	    height: 8px;
+	    margin-top: -11px;
+	}
+	#dbfmplayer-volume-slider {
+	    top: -11px;
+	    left: 40px;
+	    height: 15px;
+	}
+	#dbfmplayer-volume-slide > svg {
+		height: 8px;
+		width: 12px;
+	}
+	#dbfmplayer-volume-slider-bar {
+		margin-top: 2.5px;
+	}
+	#dbfmplayer-btns {
+		height: 8px;
+	}
+	#dbfmplayer-btns svg {
+		width: 15px;
+		height: 15px;
+	}
+	#dbfmplayer-right {
+		width: 100px;
+		height: 100px;
+	}
+	#dbfmplayer-right img {
+		width: 100px;
+		height: 100px;
+	}
+
+}
+
+@media only screen 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+  	#dbfmplayer-volume-slider {
+  		top: -12px;
+  	}
+	#dbfmplayer-volume-slider svg {
+		width: 9px;
+	}
+	#dbfmplayer-volume-slider-bar {
+		margin-top: 3.5px;
+	}
+}
