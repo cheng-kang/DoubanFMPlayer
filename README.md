@@ -2,9 +2,7 @@
 
 A mimic of Douban.fm player on [Douban.fm](https://douban.fm/). *Also a Flex practice project.*
 
-  **All copyright of the design belongs to who creates it.** 
-
-  Any copyright issue, please contact [hi@chengkang.me](mailto:hi@chengkang.me).
+You can use it on your website or **embed it in your Hexo theme**.
 
 ## Showcase
 Click [here](http://chengkang.me/DoubanFMPlayer/) to check live demo.
@@ -100,3 +98,14 @@ dbfmplayer-light.css: http://7u2sl0.com1.z0.glb.clouddn.com/dbfmplayer/dbfmplaye
     
     - `post` should be **the title of the post** in which you want to add an player
     - `title`, `singer`, `album`, `music` you can easily figure out what the values should be : D
+
+## Acknowledgements
+
+Most SVG icons come from [Iconmoon.io](https://icomoon.io/).
+
+Designed by [Douban.fm](https://douban.fm).
+
+## Copyright
+**All copyright of the design belongs to who creates it.** 
+
+Any copyright issue, please contact [hi@chengkang.me](mailto:hi@chengkang.me).
