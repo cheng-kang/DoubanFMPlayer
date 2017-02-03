@@ -1,17 +1,5 @@
-(function (window,document,$) {
 // load CSS
-$("<link/>", {
-   rel: "stylesheet",
-   type: "text/css",
-   href: "https://cdn.rawgit.com/cheng-kang/DoubanFMPlayer/61ea6ae4/src/dbfmplayer.css",
-}).appendTo("head");
-
-// var dbfmplayerSetting = {
-// 	"title": "茜さす 帰路照らされど…",
-// 	"singer": "椎名林檎",
-// 	"album_pic_url": "https://img1.doubanio.com/lpic/s2722629.jpg",
-// 	"music_url": "http://mr3.doubanio.com/ff7730a714d4e3ecbf3f5854f6154532/0/fm/song/p1033017_128k.mp4"
-// };
+document.getElementsByTagName("head")[0].innerHTML += '<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/cheng-kang/DoubanFMPlayer/61ea6ae4/src/dbfmplayer.css">'
 
 var musicVar="";
 musicVar += "<div id=\"dbfmplayer-containner\">";
@@ -60,85 +48,133 @@ musicVar += "			<\/div>";
 musicVar += '			<audio id=\"dbfmplayer-music\" src=\"'+dbfmplayerSetting.music_url+'" style=\"display: none;\"><\/audio>';
 musicVar += "		<\/div>";
 
-$("#dbfmplayer")[0].outerHTML = musicVar;
+document.getElementById("dbfmplayer").outerHTML = musicVar;
 
-var music = $("#dbfmplayer-music")[0];
+var music = document.getElementById("dbfmplayer-music");
 music.loop = true;
 music.volume = 0.5;
 
 music.onplaying = function() {
-	$("#dbfmplayer-right").removeClass("paused");
+	document.getElementById("dbfmplayer-right").className = "rotate";
 }
 music.onpause = function() {
-	$("#dbfmplayer-right").addClass("paused");
+	document.getElementById("dbfmplayer-right").className = "rotate paused";
 }
 music.ended = function() {
-	$("#dbfmplayer-right").addClass("paused");
+	document.getElementById("dbfmplayer-right").className = "rotate paused";
 }
 music.ontimeupdate = function() {
 	var timeLeftInSeconds = music.duration - music.currentTime;
-	$("#dbfmplayer-time").html("-"+formatTimeNumber(parseInt(timeLeftInSeconds/60))+":"+formatTimeNumber(parseInt(timeLeftInSeconds%60)));
+	document.getElementById("dbfmplayer-time").innerHTML = "-"+formatTimeNumber(parseInt(timeLeftInSeconds/60))+":"+formatTimeNumber(parseInt(timeLeftInSeconds%60));
 
-	var progressBar = $("#dbfmplayer-progress-bar");
+	var progressBar = document.getElementById("dbfmplayer-progress-bar");
 	var cp = music.currentTime / music.duration * 100; // current percentage
 
-	progressBar.css("background", "-moz-linear-gradient(left,  rgb(107, 189, 122) 0%, rgb(107, 189, 122) "+cp+"%, #dadada "+cp+"%, #dadada "+(100-cp)+"%)")
-	progressBar.css("background", "-webkit-linear-gradient(left,  rgb(107, 189, 122) 0%, rgb(107, 189, 122) "+cp+"%, #dadada "+cp+"%, #dadada "+(100-cp)+"%)")
-	progressBar.css("background", "linear-gradient(to right,  rgb(107, 189, 122) 0%, rgb(107, 189, 122) "+cp+"%, #dadada "+cp+"%, #dadada "+(100-cp)+"%)")
+	progressBar.style.background = "-moz-linear-gradient(left,  rgb(107, 189, 122) 0%, rgb(107, 189, 122) "+cp+"%, #dadada "+cp+"%, #dadada "+(100-cp)+"%)";
+	progressBar.style.background = "-webkit-linear-gradient(left,  rgb(107, 189, 122) 0%, rgb(107, 189, 122) "+cp+"%, #dadada "+cp+"%, #dadada "+(100-cp)+"%)";
+	progressBar.style.background = "linear-gradient(to right,  rgb(107, 189, 122) 0%, rgb(107, 189, 122) "+cp+"%, #dadada "+cp+"%, #dadada "+(100-cp)+"%)";
 };
 
 function formatTimeNumber(myNumber) {
 	return ("0" + myNumber).slice(-2);
 }
 
-$("#dbfmplayer-play").click(function(e) {
+document.getElementById("dbfmplayer-play").onclick = function(e) {
 	if (music.paused) {
 		music.play();
-		$("#dbfmplayer-play").html('<path d="M4 4h10v24h-10zM18 4h10v24h-10z" fill="#4a4a4a"></path>');
+		document.getElementById("dbfmplayer-play").innerHTML = '<path d="M4 4h10v24h-10zM18 4h10v24h-10z" fill="#4a4a4a"></path>';
 	} else {
 		music.pause();
-		$("#dbfmplayer-play").html('<path d="M6 4l20 12-20 12z" fill="#4a4a4a"></path>');
+		document.getElementById("dbfmplayer-play").innerHTML = '<path d="M6 4l20 12-20 12z" fill="#4a4a4a"></path>';
 	}
-});
-$("#dbfmplayer-loop").click(function(e) {
+};
+document.getElementById("dbfmplayer-loop").onclick = function(e) {
 	music.loop = !music.loop;
 	if (music.loop) {
-		$($("#dbfmplayer-loop").children()[0]).attr("fill", "#4a4a4a");
+		document.getElementById("dbfmplayer-loop").children[0].fill = "#4a4a4a";
 	} else {
-		$($("#dbfmplayer-loop").children()[0]).attr("fill", "rgb(155, 155, 155)");
+		document.getElementById("dbfmplayer-loop").children[0].fill = "rgb(155, 155, 155)";
 	}
-});
-$("#dbfmplayer-download").click(function(e) {
-	var a = $('<a href="'+music.src+'" download="'+music.src.replace(/^.*[\\\/]/, '')+'" style="display: none;">');
-	a.appendTo("body");
+};
+document.getElementById("dbfmplayer-download").onclick = function(e) {
+	var a = document.createElement('a');
+	a.id = "dbfmplayer-download-link";
+	a.href = music.src;
+	a.download = music.src.replace(/^.*[\\\/]/, '');
+	a.style = "display:none;"
+	document.body.appendChild(a);
 	a.click();
-	delete a;
-})
-$('#dbfmplayer-volume-slider-bar').click(function(e) {
+	a.remove();
+};
+var x, y = 0; // variables that will contain the coordinates
+// Get X and Y position of the elm (from: vishalsays.wordpress.com)
+function getXYpos(elm) {
+    x = elm.offsetLeft; // set x to elm’s offsetLeft
+    y = elm.offsetTop; // set y to elm’s offsetTop
+    elm = elm.offsetParent; // set elm to its offsetParent
+    //use while loop to check if elm is null
+    // if not then add current elm’s offsetLeft to x
+    //offsetTop to y and set elm to its offsetParent
+    while (elm != null) {
+        x = parseInt(x) + parseInt(elm.offsetLeft);
+        y = parseInt(y) + parseInt(elm.offsetTop);
+        elm = elm.offsetParent;
+    }
+    // returns an object with "xp" (Left), "=yp" (Top) position
+    return {
+        'xp': x,
+        'yp': y
+    };
+}
+document.getElementById("dbfmplayer-volume-slider-bar").onclick = function(e) {
 	if (music.readyState) {
-		var posX = $(this).offset().left, posY = $(this).offset().top;
-		var x = e.pageX - posX;
 
-		var sliderBar = $("#dbfmplayer-volume-slider-bar");
-		sliderBar.css("background", "-moz-linear-gradient(left,  #9b9b9b 0%, #9b9b9b "+x*2+"%, #e5e5e8 "+x*2+"%, #e5e5e8 "+(100-x*2)+"%)")
-		sliderBar.css("background", "-webkit-linear-gradient(left,  #9b9b9b 0%, #9b9b9b "+x*2+"%, #e5e5e8 "+x*2+"%, #e5e5e8 "+(100-x*2)+"%)")
-		sliderBar.css("background", "linear-gradient(to right,  #9b9b9b 0%, #9b9b9b "+x*2+"%, #e5e5e8 "+x*2+"%, #e5e5e8 "+(100-x*2)+"%)")
+	    var xy_pos = getXYpos(this);
+	    // if IE
+	    if (navigator.appVersion.indexOf("MSIE") != -1) {
+	        // in IE scrolling page affects mouse coordinates into an element
+	        // This gets the page element that will be used to add scrolling value to correct mouse coords
+	        var standardBody = (document.compatMode == 'CSS1Compat') ? document.documentElement: document.body;
+	        x = event.clientX + standardBody.scrollLeft;
+	        y = event.clientY + standardBody.scrollTop;
+	    } else {
+	        x = e.pageX;
+	        y = e.pageY;
+	    }
+	    x = x - xy_pos['xp'];
+	    y = y - xy_pos['yp'];
+
+		var sliderBar = document.getElementById("dbfmplayer-volume-slider-bar");
+		sliderBar.style.background = "-moz-linear-gradient(left,  #9b9b9b 0%, #9b9b9b "+x*2+"%, #e5e5e8 "+x*2+"%, #e5e5e8 "+(100-x*2)+"%)";
+		sliderBar.style.background = "-webkit-linear-gradient(left,  #9b9b9b 0%, #9b9b9b "+x*2+"%, #e5e5e8 "+x*2+"%, #e5e5e8 "+(100-x*2)+"%)";
+		sliderBar.style.background = "linear-gradient(to right,  #9b9b9b 0%, #9b9b9b "+x*2+"%, #e5e5e8 "+x*2+"%, #e5e5e8 "+(100-x*2)+"%)";
 
 		music.volume = x*2/100;
 	}
-});
-$('#dbfmplayer-progress-bar').click(function(e) {
+};
+document.getElementById("dbfmplayer-progress-bar").onclick = function(e) {
 	if (music.readyState) {
-		var posX = $(this).offset().left, posY = $(this).offset().top;
-		var x = e.pageX - posX;
+	    var xy_pos = getXYpos(this);
+	    // if IE
+	    if (navigator.appVersion.indexOf("MSIE") != -1) {
+	        // in IE scrolling page affects mouse coordinates into an element
+	        // This gets the page element that will be used to add scrolling value to correct mouse coords
+	        var standardBody = (document.compatMode == 'CSS1Compat') ? document.documentElement: document.body;
+	        x = event.clientX + standardBody.scrollLeft;
+	        y = event.clientY + standardBody.scrollTop;
+	    } else {
+	        x = e.pageX;
+	        y = e.pageY;
+	    }
+	    x = x - xy_pos['xp'];
+	    y = y - xy_pos['yp'];
 
-		var progressBar = $("#dbfmplayer-progress-bar");
-		var cp = x / parseInt(progressBar.css("width")) * 100;
+		var progressBar = document.getElementById("dbfmplayer-progress-bar");
+		var cp = x / parseInt(window.getComputedStyle(progressBar).width) * 100;
 
 		music.currentTime = music.duration * cp / 100;
-		progressBar.css("background", "-moz-linear-gradient(left,  rgb(107, 189, 122) 0%, rgb(107, 189, 122) "+cp+"%, #dadada "+cp+"%, #dadada "+(100-cp)+"%)")
-		progressBar.css("background", "-webkit-linear-gradient(left,  rgb(107, 189, 122) 0%, rgb(107, 189, 122) "+cp+"%, #dadada "+cp+"%, #dadada "+(100-cp)+"%)")
-		progressBar.css("background", "linear-gradient(to right,  rgb(107, 189, 122) 0%, rgb(107, 189, 122) "+cp+"%, #dadada "+cp+"%, #dadada "+(100-cp)+"%)")
+		progressBar.style.background = "-moz-linear-gradient(left,  rgb(107, 189, 122) 0%, rgb(107, 189, 122) "+cp+"%, #dadada "+cp+"%, #dadada "+(100-cp)+"%)";
+		progressBar.style.background = "-webkit-linear-gradient(left,  rgb(107, 189, 122) 0%, rgb(107, 189, 122) "+cp+"%, #dadada "+cp+"%, #dadada "+(100-cp)+"%)";
+		progressBar.style.background = "linear-gradient(to right,  rgb(107, 189, 122) 0%, rgb(107, 189, 122) "+cp+"%, #dadada "+cp+"%, #dadada "+(100-cp)+"%)";
 	}
-});
-})(window,document,jQuery);
+};
