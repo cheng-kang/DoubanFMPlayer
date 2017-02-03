@@ -3,7 +3,7 @@
 $("<link/>", {
    rel: "stylesheet",
    type: "text/css",
-   href: "https://cdn.rawgit.com/cheng-kang/DoubanFMPlayer/master/src/dbfmplayer.css"
+   href: "https://cdn.rawgit.com/cheng-kang/DoubanFMPlayer/master/src/dbfmplayer.css",
 }).appendTo("head");
 
 // var dbfmplayerSetting = {
@@ -141,5 +141,4 @@ $('#dbfmplayer-progress-bar').click(function(e) {
 		progressBar.css("background", "linear-gradient(to right,  rgb(107, 189, 122) 0%, rgb(107, 189, 122) "+cp+"%, #dadada "+cp+"%, #dadada "+(100-cp)+"%)")
 	}
 });
-
 })(jQuery);
