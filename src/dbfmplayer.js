@@ -1,4 +1,4 @@
-(function ($) {
+(function (window,document,$) {
 // load CSS
 $("<link/>", {
    rel: "stylesheet",
@@ -141,4 +141,4 @@ $('#dbfmplayer-progress-bar').click(function(e) {
 		progressBar.css("background", "linear-gradient(to right,  rgb(107, 189, 122) 0%, rgb(107, 189, 122) "+cp+"%, #dadada "+cp+"%, #dadada "+(100-cp)+"%)")
 	}
 });
-})(jQuery);
+})(window,document,jQuery);
