@@ -1,0 +1,22 @@
+.links {
+	height: 100px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 700px;
+	margin: 0 auto;
+}
+
+.links a {
+	display: inline-block;
+}
+
+.demo {
+	width: 700px; 
+	min-height: 500px;
+	margin: 0 auto;
+}
+
+.dark {
+	background-color: #1d1f21;
+}
