@@ -3,7 +3,6 @@
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	width: 700px;
 	margin: 0 auto;
 }
 
@@ -12,11 +11,20 @@
 }
 
 .demo {
-	width: 700px; 
 	min-height: 500px;
 	margin: 0 auto;
 }
 
 .dark {
 	background-color: #1d1f21;
+}
+
+@media screen 
+  and (min-device-width: 1200px) { 
+  	.links {
+  		width: 700px;
+  	}
+  	.demo {
+  		width: 700px;
+  	}
 }
