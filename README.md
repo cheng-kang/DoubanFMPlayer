@@ -58,6 +58,7 @@ dbfmplayer.css: http://7u2sl0.com1.z0.glb.clouddn.com/dbfmplayer.css
     ></dbfmplayer>
     ```
 2. Add the following script to your HTML file.
+
     ```
     <script type="text/javascript">
         (function() { // DON'T EDIT BELOW THIS LINE
@@ -71,6 +72,7 @@ dbfmplayer.css: http://7u2sl0.com1.z0.glb.clouddn.com/dbfmplayer.css
 ### 2. Embed it in your Hexo theme
 
 1. Add the following script to your layout file for **Post** (or anywhere else you want):
+
     ```
     <script type="text/javascript">
         (function() { // DON'T EDIT BELOW THIS LINE
