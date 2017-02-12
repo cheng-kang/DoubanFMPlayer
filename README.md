@@ -18,36 +18,53 @@ Feel free to download source code from `/src` folder.
 
 Alternatively, use the cdn I've set up:
 ```
-dbfmplayer.js: http://7u2sl0.com1.z0.glb.clouddn.com/dbfmplayer/dbfmplayer.js
-dbfmplayer-dark.css: http://7u2sl0.com1.z0.glb.clouddn.com/dbfmplayer/dbfmplayer-dark.css
-dbfmplayer-light.css: http://7u2sl0.com1.z0.glb.clouddn.com/dbfmplayer/dbfmplayer-light.css
+dbfmplayer.js: http://7u2sl0.com1.z0.glb.clouddn.com/dbfmplayer.js
+dbfmplayer.css: http://7u2sl0.com1.z0.glb.clouddn.com/dbfmplayer.css
 ```
     
     
 ### 1. Use it on your website
-1. Add `<div id="dbfmplayer"></div>` to your HTML file
-2. Add the following script to your HTML file. Note that **you must specify settings** for this player to work properly. Follow the example below.
+1. Add any numbers of `dbfmplayer` tag to your HTML file.
+    ```
+    <dbfmplayer 
+        title="茜さす 帰路照らされど…" 
+        singer="椎名林檎"
+        album="https://img1.doubanio.com/lpic/s2722629.jpg"
+        music="http://mr3.doubanio.com/ff7730a714d4e3ecbf3f5854f6154532/0/fm/song/p1033017_128k.mp4"
+    ></dbfmplayer>
+    ```
+    You **must** set `title`, `singer`, `album` and `music` attributes of your `dbfmplayer` tags.
+    
+    - `title`: name of the music
+    - `singer`: name of the singer/musician
+    - `album`: URL of a picture related to this music (both absolute URL or relative URL)
+    - `music`: URL of the music (both absolute URL or relative URL)
+    
+    **Optional** attributes are `theme` and `loop`.
+    
+    - `theme`: "dark" or "light". Default theme is "dark", which is suitable for light color background web pages; theme "light" is suitable for dark color background web pages.
+    - `loop`: "true" or "false". Default value is "false". If `loop` is set to "true", the music will loop after it ends.
+    - `autoplay`: "true" or "false". Default value is "false". If `autoplay` is set to "true", the music will automatically start when it's loaded.
+    
+    You can set `loop` and `autoplay` to "true" in a convenient way:
+    ```
+    <dbfmplayer 
+        title="茜さす 帰路照らされど…" 
+        singer="椎名林檎"
+        album="https://img1.doubanio.com/lpic/s2722629.jpg"
+        music="http://mr3.doubanio.com/ff7730a714d4e3ecbf3f5854f6154532/0/fm/song/p1033017_128k.mp4"
+        loop
+        autoplay
+    ></dbfmplayer>
+    ```
+2. Add the following script to your HTML file.
     ```
     <script type="text/javascript">
-        // dbfmplayerSetting: an object for the player to set up things
-        //     title: the title of your music
-        //     singer: the name of the singer of this song
-        //     album_pic_url: a valid url for the picture you want to show for this song
-        //     music_url: a valid url for the music file
-        //     theme: (optional) dark / light, by default (if you leave it empty) the value is dark
-    	var dbfmplayerSetting = {
-    		"title": "How Long Will I Love You",
-    		"singer": "Ellie Goulding",
-    		"album_pic_url": "http://wx2.sinaimg.cn/mw690/643ec13dgy1fce044w2ckj215o15o15i.jpg",
-    		"music_url": "http://d.mimp3.me/d/166259042_655898541/preview.mp3",
-    		"theme": "dark" // light or dark, default is dark
-    	};
-    
-    	(function() { // DON'T EDIT BELOW THIS LINE
-    	var d = document, s = d.createElement('script');
-    	s.src = 'http://7u2sl0.com1.z0.glb.clouddn.com/dbfmplayer/dbfmplayer.js';
-    	(d.head || d.body).appendChild(s);
-    	})();
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'http://7u2sl0.com1.z0.glb.clouddn.com/dbfmplayer.js';
+        (d.head || d.body).appendChild(s);
+        })();
     </script>
     ```
     
@@ -55,49 +72,15 @@ dbfmplayer-light.css: http://7u2sl0.com1.z0.glb.clouddn.com/dbfmplayer/dbfmplaye
 
 1. Add the following script to your layout file for **Post** (or anywhere else you want):
     ```
-    <% 
-        for (var i = 0; i<site.data.musics.length; i++) {
-            if (site.data.musics[i].post === page.title) { 
-    %>
-                <div id="dbfmplayer"></div>
-                <script type="text/javascript">
-                var dbfmplayerSetting = {
-                  "title": "<%- site.data.musics[i].title %>",
-                  "singer": "<%- site.data.musics[i].singer %>",
-                  "album_pic_url": "<%- site.data.musics[i].album %>",
-                  "music_url": "<%- site.data.musics[i].music %>"
-                };
-    
-                (function() { // DON'T EDIT BELOW THIS LINE
-                var d = document, s = d.createElement('script');
-                s.src = 'http://7u2sl0.com1.z0.glb.clouddn.com/dbfmplayer/dbfmplayer.js';
-                (d.head || d.body).appendChild(s);
-                })();
-            </script>
-    <% 
-            break;
-          } 
-        }
-    %>
+    <script type="text/javascript">
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'http://7u2sl0.com1.z0.glb.clouddn.com/dbfmplayer.js';
+        (d.head || d.body).appendChild(s);
+        })();
+    </script>
     ```
-2. Create a folder named `_data` in the `source` folder in your `Hexo` blog directory.
-3. Create a `musics.json` file in the `_data` folder you just created.
-4. Add music data to `musics.json` for your blog. Fill it with data like this:
-    ```
-    [
-       {
-          "post": "QnA，一个 Hexo FAQ 主题",
-          "title": "茜さす 帰路照らされど…",
-          "singer": "椎名林檎",
-          "album": "https://img1.doubanio.com/lpic/s2722629.jpg",
-          "music": "http://mr3.doubanio.com/ff7730a714d4e3ecbf3f5854f6154532/0/fm/song/p1033017_128k.mp4"
-       }
-    ]
-    ```
-    Each object should have all those **five** keys.
-    
-    - `post` should be **the title of the post** in which you want to add an player
-    - `title`, `singer`, `album`, `music` you can easily figure out what the values should be : D
+2. Now users can add music to their page by adding the `dbfmplayer` tag to their articles (markdown files) by following [1.1 Add any numbers of `dbfmplayer` tag to your HTML file.](#1-use-it-on-your-website). 
 
 ## Acknowledgements
 
